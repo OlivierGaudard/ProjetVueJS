@@ -1,0 +1,98 @@
+<html lang="fr">
+	<head>
+		<title>CRUD avec Express + MongoDB</title>
+		<!--
+		<script src="js/crudAvecFetch.js"></script>
+		-->
+		<script src="js/crudAvecFetchAvecTable.js"></script>
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	<body>
+		<h1>Test de l'API sur le serveur de restaurants</h1>
+		<h2>HTTP GET pour obtenir des restaurants, ou un seul<h2>
+			<h3>GET /api/restaurants</h3>
+			<p>Pour tester sans Ajax, on peut juste faire un lien HTML:</p>
+			<ul>
+				<li><a href="/api/restaurants">Cliquer pour obtenir les 10 premiers restaurants</a>. La requête est simplement un GET sur <code>/api/restaurants</code></li>
+				<p>
+				<li><a href="/api/restaurants?page=2">Requête avec pagination, on indique la page (par defaut: 10 restaurants par page)</a>. Ici un GET sur <code>/api/restaurants?page=2</code></li>
+				<p>
+				<li><a href="/api/restaurants?page=2&pagesize=20">Requête avec pagination, on indique la page (2) et le nombre de restaurants par page (20)</a>. Ici un GET sur <code>/api/restaurants?page=2&pagesize=20</code></li>
+				<p>
+				<li><a href="/api/restaurants/5a5497da5511717460d2a09d">Requête pour obtenir le détail du restaurant avec id=5a094c6f4b7cf08c45891278</a>. Ici un GET sur <code>/api/restaurants/2</code></li>
+			</ul>
+			<p>Pour tester avec Ajax, il faut du JavaScript. On utilise la nouvelle API fetch, disponible depuis 2012. Mais avec un polyfill on peut la faire fonctionner sur tous les navigateurs, même les plus anciens.<p>
+			<p><strong>Réponse Ajax du serveur:</strong></p>
+			<div id="reponseGET" class="response"></div>
+
+			<ul>
+				<li>GET en fetch/Ajax correspondant à la première requête de l'exemple précédent: <button onclick="getRequest1();">Clicker</button></li>
+				<p></p>
+				<li>GET en fetch/Ajax correspondant à la seconde requête de l'exemple précédent: <button onclick="getRequest2();">Clicker</button></li>
+				<p></p>
+				<li>GET en fetch/Ajax correspondant à la troisème requête de l'exemple précédent: <button onclick="getRequest3();">Clicker</button></li>
+				<p></p>
+				<li>GET en fetch/Ajax correspondant à la quatrième requête de l'exemple précédent: <button onclick="getRequest4();">Clicker</button></li>
+			</ul>
+			<h2>HTTP POST pour insérer un restaurant</h2>
+			<p>Avec fetch/Ajax POST<p>
+			<p><strong>Réponse Ajax du serveur:</strong></p>
+			<div id="reponsePOST" class="response"></div>
+			<form onsubmit="postRequest(event);">
+				<fieldset>
+					<legend>Ajout d'un restaurant</legend>
+					<label>
+						Nom: <input type="text" name="nom"
+						value="Sushis de rabat" required placeholder="Michel's restaurant">
+					</label>
+					<p></p>
+					<label>
+						Cuisine: <input type="text" name="cuisine" value="Japonais/Marocaine" required placeholder="Cuisine française">
+					</label>
+					<p></p>
+					<button>Ajouter ce restaurant</button>
+				</fieldset>
+			</form>
+
+			<h2>HTTP PUT pour modifier un restaurant</h2>
+			<p>Avec fetch/Ajax PUT<p>
+			<p><strong>Réponse Ajax du serveur:</strong></p>
+			<div id="reponsePUT" class="response"></div>
+			<form id="formulaireModification" onsubmit="putRequest(event);">
+				<fieldset>
+					<legend>Modification d'un restaurant</legend>
+					<label>
+						Id: <input type="text" name="_id"
+						value="56b9f89be0adc7f00f348cf6" required placeholder="Id du restaurant à modifier">
+					</label>
+					<p></p>
+					<label>
+						Nom: <input type="text" name="nom"
+						value="Sushis de rabat" required placeholder="Michel's restaurant">
+					</label>
+					<p></p>
+					<label>
+						Cuisine: <input type="text" name="cuisine" value="Japonais/Marocaine" required placeholder="Cuisine française">
+					</label>
+					<p></p>
+					<button>Modifier ce restaurant</button>
+				</fieldset>
+			</form>
+
+			<h2>HTTP DELETE pour Supprimer un restaurant</h2>
+			<p>Avec fetch/Ajax DELETE<p>
+			<p><strong>Réponse Ajax du serveur:</strong></p>
+			<div id="reponseDELETE" class="response"></div>
+			<form onsubmit="deleteRequest(event);">
+				<fieldset>
+					<legend>Suppression d'un restaurant</legend>
+					<label>
+						Id: <input type="text" name="_id"
+						value="56b9f89be0adc7f00f348cf6" required placeholder="Id du restaurant à supprimer">
+					</label>
+
+					<button>Supprimer ce restaurant</button>
+				</fieldset>
+			</form>
+	</body>
+</html>

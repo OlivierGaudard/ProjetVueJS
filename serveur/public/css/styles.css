@@ -1,0 +1,14 @@
+.response {
+	border:1px solid black;
+	background-color:lightGrey;
+	padding:20px;
+	margin: 20px
+}
+
+input:invalid {
+	background-color:lightpink;
+}
+
+input:valid {
+	background-color:lightgreen;
+}
