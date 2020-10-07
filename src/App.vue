@@ -6,17 +6,17 @@ launch bdd : mongod -->
 
 <template>
     <div id="app">
-        <HelloWorld/>
+        <ListeDesRestaurants/>
     </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue'
+  import ListeDesRestaurants from './components/ListeDesRestaurants.vue'
 
   export default {
       name: 'app',
       components: {
-          HelloWorld
+          ListeDesRestaurants
       }
   }
   </script>

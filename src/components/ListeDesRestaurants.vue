@@ -9,9 +9,9 @@
 
                 <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
-                <p>Nb de resto par page : <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
+                <p>Nb de resto par  : <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
                 <br />
-                <p>Page courante : {{page}}</p>
+                <p>Page courante : {{pageAffichage}}</p>
                 <table>
                     <tr>
                         <th>Nom</th>
@@ -53,13 +53,14 @@
   import _ from 'lodash'
   import modal from '../components/Modal.vue'
   export default {
-    name: 'HelloWorld',
+    name: 'ListeDesRestaurants',
     data: () => ({
         restaurants: [],
         nbRestaurants: 0,
         cuisine: '',
         url: 'http://localhost:8080/api/restaurants',
         page: 0,
+        pageAffichage: 1,
         pagesize: 10,
         nameRestauSearch: '',
         name: '',
@@ -150,12 +151,14 @@
         pageSuivante() {
             if(this.page === (this.nbRestaurants / this.pagesize)) return;
             this.page++;
+            this.pageAffichage++;
             this.getRestaurantsFromServer();
         },
 
         pagePrecedente() {
             if(this.page === 0) return;
             this.page--;
+            this.pageAffichage--;
             this.getRestaurantsFromServer();
         }, 
 
