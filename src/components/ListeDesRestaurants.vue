@@ -17,13 +17,16 @@
                         <th>Nom</th>
                         <th>Cuisine</th>
                         <th>Ville</th>
-                        <th>Action</th>
+                        <th>Details</th>
+                        <th>Supprimer</th>
+
                     </tr>
                     <tbody>
                         <tr v-for="(r, index) in restaurants" v-bind:key="r._id" @click="showModal(r)" v-bind:style="{backgroundColor:getColor(index)}" v-bind:class="{bordureRouge:(index === 2)}">
                         <td>{{r.name}}</td>
                         <td>{{r.cuisine}}</td>
                         <td>{{r.borough}}</td>
+                        <td><button @click="afficherDetailsRestau(r._id)">Détails</button></td>
                         <td><button @click="supprimerRestaurant(r._id)">Supprimer</button></td>
                     </tr>
                 </tbody>
@@ -134,6 +137,19 @@
             this.getRestaurantsFromServer();
         },
 
+/*
+        async getRestaurantFromId(id)
+        {
+           
+        },
+
+        async afficherDetailsRestau(data)
+        {
+            let url =  "/RestaurantDetail?id="+data._id;
+
+        },
+
+*/ 
         async ajouterRestaurant() {
             let donneesFormulaire = new FormData();
             donneesFormulaire.append("name", this.name);
