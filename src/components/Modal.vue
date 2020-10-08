@@ -15,7 +15,7 @@
   <template>
     <transition name="modal-fade">
       <div class="modal">
-        <helloworld @restaurant="resto"></helloworld>
+        <ListeDesRestaurants @restaurant="resto"></ListeDesRestaurants>
         {{resto.name}}
         <button type="button" @click="close">J'ai compris !</button>
       </div>

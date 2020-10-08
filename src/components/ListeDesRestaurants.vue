@@ -9,19 +9,21 @@
 
                 <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
-                <p>Nb de resto par  : <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
+                <p>Nb de resto par  :  {{pageCourante}}<input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
                 <br />
-                <p>Page courante : {{pageAffichage}}</p>
+                <p>Page courante : </p>
                 <table>
                     <tr>
                         <th>Nom</th>
                         <th>Cuisine</th>
+                        <th>Ville</th>
                         <th>Action</th>
                     </tr>
                     <tbody>
                         <tr v-for="(r, index) in restaurants" v-bind:key="r._id" @click="showModal(r)" v-bind:style="{backgroundColor:getColor(index)}" v-bind:class="{bordureRouge:(index === 2)}">
                         <td>{{r.name}}</td>
                         <td>{{r.cuisine}}</td>
+                        <td>{{r.borough}}</td>
                         <td><button @click="supprimerRestaurant(r._id)">Supprimer</button></td>
                     </tr>
                 </tbody>
@@ -43,6 +45,9 @@
             <label>
                 Cuisine : <input type="text" required v-model="cuisine">
             </label>
+            <label>
+                Ville : <input type="text" required v-model="borough">
+            </label>
 
             <button>Ajouter</button>
         </form>
@@ -60,10 +65,11 @@
         cuisine: '',
         url: 'http://localhost:8080/api/restaurants',
         page: 0,
-        pageAffichage: 1,
+        pageCourante: 1,
         pagesize: 10,
         nameRestauSearch: '',
         name: '',
+        borough: '', 
         expenses: [],
         isModalVisible: false
     }),
@@ -151,14 +157,14 @@
         pageSuivante() {
             if(this.page === (this.nbRestaurants / this.pagesize)) return;
             this.page++;
-            this.pageAffichage++;
+            this.pageCourante++;
             this.getRestaurantsFromServer();
         },
 
         pagePrecedente() {
             if(this.page === 0) return;
             this.page--;
-            this.pageAffichage--;
+            this.pageCourante--;
             this.getRestaurantsFromServer();
         }, 
 
