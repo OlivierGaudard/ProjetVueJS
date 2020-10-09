@@ -158,7 +158,7 @@
                      ]
             })
 
-            router.push({ name: '/RestaurantDetail?id='+id})
+            router.push({ path: '/RestaurantDetail?id='+id})
 
         },
 
