@@ -26,7 +26,7 @@
                         <td>{{r.name}}</td>
                         <td>{{r.cuisine}}</td>
                         <td>{{r.borough}}</td>
-                        <td><button @click="afficherDetailsRestau(r._id)">Détails</button></td>
+                        <td><button @click="afficherDetailsRestau(r)">Détails</button></td>
                         <td><button @click="supprimerRestaurant(r._id)">Supprimer</button></td>
                     </tr>
                 </tbody>
@@ -60,6 +60,7 @@
   import {db} from '../main.js'
   import _ from 'lodash'
   import modal from '../components/Modal.vue'
+  import VueRouter from 'vue-router'
   export default {
     name: 'ListeDesRestaurants',
     data: () => ({
@@ -143,13 +144,25 @@
            
         },
 
+*/
         async afficherDetailsRestau(data)
         {
-            let url =  "/RestaurantDetail?id="+data._id;
+            //let url =  "/RestaurantDetail?id="+data._id;
+            //console.log(data);
+
+            let id = data._id;
+            const router = new VueRouter({
+             routes: [
+                // dynamic segments start with a colon
+            { path: '/RestaurantDetail?id=',id}
+                     ]
+            })
+
+            router.push({ name: '/RestaurantDetail?id='+id})
 
         },
 
-*/ 
+
         async ajouterRestaurant() {
             let donneesFormulaire = new FormData();
             donneesFormulaire.append("name", this.name);

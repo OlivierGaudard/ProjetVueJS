@@ -11,6 +11,9 @@ import VueFirestore from 'vue-firestore'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+import VueRouter from 'vue-router'
+
+
 
 
 firebase.initializeApp({
@@ -22,6 +25,7 @@ export const db = firebase.firestore();
 
 Vue.use(VueFirestore)
 Vue.use(VueMaterial)
+Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 new Vue({
