@@ -9,28 +9,26 @@
 
                 <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
-                <p>Nb de resto par  :  {{pageCourante}}<input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
+                <p>Nb de resto par  :  <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
                 <br />
-                <p>Page courante : </p>
-                <table>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Cuisine</th>
-                        <th>Ville</th>
-                        <th>Details</th>
-                        <th>Supprimer</th>
+                <p>Page courante : {{pageCourante}} </p>
+                <md-table>
+                    <md-table-row>
+                        <md-table-head>Nom</md-table-head>
+                        <md-table-head>Cuisine</md-table-head>
+                        <md-table-head>Ville</md-table-head>
+                        <md-table-head>Details</md-table-head>
+                        <md-table-head>Supprimer</md-table-head>
 
-                    </tr>
-                    <tbody>
-                        <tr v-for="(r, index) in restaurants" v-bind:key="r._id" @click="showModal(r)" v-bind:style="{backgroundColor:getColor(index)}" v-bind:class="{bordureRouge:(index === 2)}">
-                        <td>{{r.name}}</td>
-                        <td>{{r.cuisine}}</td>
-                        <td>{{r.borough}}</td>
-                        <td><button @click="afficherDetailsRestau(r)">Détails</button></td>
-                        <td><button @click="supprimerRestaurant(r._id)">Supprimer</button></td>
-                    </tr>
-                </tbody>
-            </table>
+                    </md-table-row>
+                        <md-table-row v-for="(r, index) in restaurants" v-bind:key="r._id" @click="showModal(r)" v-bind:style="{backgroundColor:getColor(index)}" v-bind:class="{bordureRouge:(index === 2)}">
+                        <md-table-cell>{{r.name}}</md-table-cell>
+                        <md-table-cell>{{r.cuisine}}</md-table-cell>
+                        <md-table-cell>{{r.borough}}</md-table-cell>
+                        <md-table-cell><button @click="afficherDetailsRestau(r)">Détails</button></md-table-cell>
+                        <md-table-cell><button @click="supprimerRestaurant(r._id)">Supprimer</button></md-table-cell>
+                    </md-table-row>
+            </md-table>
             <br />
             <label>
                 Nom : <input @input="chercherRestaurants()" type="text" v-model="nameRestauSearch">
