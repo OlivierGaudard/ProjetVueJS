@@ -1,9 +1,9 @@
-<!--  @autor : Nicolas Meyer - M1 Miage TD2. 
+<!--  @autor : Nicolas Meyer - Olivier Garaud - M1 Miage TD2. 
   @date : 30/09/2020 -->
 
   <script>
     export default {
-      name: 'modal',
+      name: 'Modal',
       methods: {
         close() {
           this.$emit('close');

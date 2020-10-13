@@ -1,4 +1,4 @@
-/* @autor : Nicolas Meyer - M1 Miage TD2. 
+/* @autor : Nicolas Meyer - Olivier Garaud - M1 Miage TD2. 
 @date : 30/09/2020
 @update : 07/10/2020 */
 

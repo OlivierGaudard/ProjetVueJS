@@ -2,7 +2,8 @@
 @date : 30/09/2020
 
 launch server : node serverCrudWithMongo.js
-launch bdd : mongod -->
+launch bdd : mongod 
+launch client : npm run serve -->
 
 <template>
     <div id="app">
