@@ -2,10 +2,10 @@
     @date : 30/09/2020 -->
 
 <style scoped src="../css/styles.css"></style>
-<template>
-    <div>
-        <div v-if="nbRestaurants">
-            <modal v-show="isModalVisible" @close="closeModal"/>
+    <template>
+        <div>
+            <div v-if="nbRestaurants">
+                <modal v-show="isModalVisible" @close="closeModal"/>
 
                 <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
@@ -21,11 +21,13 @@
                         <md-table-head>Supprimer</md-table-head>
 
                     </md-table-row>
-                        <md-table-row v-for="(r, index) in restaurants" :key="r._id" @click="showModal(r)" v-bind:style="{backgroundColor:getColor(index)}" v-bind:class="{bordureRouge:(index === 2)}">
+                        <md-table-row v-for="(r, index) in restaurants" v-bind:key="r._id" @click="showModal(r)" v-bind:style="{backgroundColor:getColor(index)}" v-bind:class="{bordureRouge:(index === 2)}">
                         <md-table-cell>{{r.name}}</md-table-cell>
                         <md-table-cell>{{r.cuisine}}</md-table-cell>
                         <md-table-cell>{{r.borough}}</md-table-cell>
-                        <md-table-cell><button @click="afficherDetailsRestau(r)">Détails</button></md-table-cell>
+                        <md-table-cell>
+                            <router-link :to="'/RestaurantDetail?id=' + r._id"> [Détails] </router-link>
+                        </md-table-cell>
                         <md-table-cell><button @click="supprimerRestaurant(r._id)">Supprimer</button></md-table-cell>
                     </md-table-row>
             </md-table>
@@ -61,9 +63,6 @@
   import VueRouter from 'vue-router'
   export default {
     name: 'ListeDesRestaurants',
-    props: {
-        restaurants: []
-    },
     data: () => ({
         restaurants: [],
         nbRestaurants: 0,
@@ -151,11 +150,16 @@
             //let url =  "/RestaurantDetail?id="+data._id;
             //console.log(data);
 
+
+            const RestauDetails = {
+                template: `<div>RestauDetails {{ $route.params.id }}</div>`
+            }
+
             let id = data._id;
             const router = new VueRouter({
              routes: [
                 // dynamic segments start with a colon
-            { path: '/RestaurantDetail?id=',id}
+            { path: '/RestaurantDetail?id=:id', component: RestauDetails}
                      ]
             })
 

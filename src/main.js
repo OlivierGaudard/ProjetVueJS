@@ -13,6 +13,9 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import VueRouter from 'vue-router'
 
+import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
+import Modal from './components/Modal.vue';
+
 
 
 
@@ -28,6 +31,30 @@ Vue.use(VueMaterial)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
+const router = new VueRouter(
+    {
+        routes: 
+        [
+            {
+                path: '/',
+                component: ListeDesRestaurants
+            },
+
+            {
+                path: '/RestaurantDetail?id=',
+                component: Modal,
+                props: {
+                    msg: "Hello",
+                    //data: data
+                }
+            }
+
+        ],
+        mode: 'history'
+    }
+);
+
 new Vue({
+    router,
     render: h => h(App),
 }).$mount('#app')

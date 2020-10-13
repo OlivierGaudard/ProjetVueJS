@@ -7,20 +7,18 @@ launch client : npm run serve -->
 
 <template>
     <div id="app">
-        <ListeDesRestaurants/>
-        <Modal/>
+        <router-link to="/">[Home]</router-link>
+        <router-link to="/RestaurantDetail?id=">[Details Restau]</router-link>
+        <router-view> </router-view>
     </div>
 </template>
 
 <script>
-  import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
-  import Modal from './components/Modal.vue';
+
 
   export default {
       name: 'app',
       components: {
-          ListeDesRestaurants,
-          Modal
       }
   }
   </script>

@@ -4,20 +4,17 @@
   <script>
     export default {
       name: 'Modal',
-      methods: {
-        close() {
-          this.$emit('close');
-        },
-      },
+      props: {
+        msg: String,
+        //data: data
+      }
     };
   </script>
 
   <template>
     <transition name="modal-fade">
       <div class="modal">
-        <ListeDesRestaurants @restaurant="resto"></ListeDesRestaurants>
-        {{resto.name}}
-        <button type="button" @click="close">J'ai compris !</button>
+        <h1> Détails d'un restaurant :  {{msg}}</h1>
       </div>
     </transition>
   </template>
