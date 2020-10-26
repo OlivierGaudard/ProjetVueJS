@@ -26,7 +26,7 @@
                         <md-table-cell>{{r.cuisine}}</md-table-cell>
                         <md-table-cell>{{r.borough}}</md-table-cell>
                         <md-table-cell>
-                            <router-link :to="'/RestaurantDetail?id=' + r._id"> [Détails] </router-link>
+                            <router-link :to="'/RestaurantDetails/' + r._id"> [Détails] </router-link>
                         </md-table-cell>
                         <md-table-cell><button @click="supprimerRestaurant(r._id)">Supprimer</button></md-table-cell>
                     </md-table-row>
@@ -59,7 +59,7 @@
 <script>
   import {db} from '../main.js'
   import _ from 'lodash'
-  import modal from '../components/Modal.vue'
+  import Modal from '../components/Modal.vue'
   import VueRouter from 'vue-router'
   export default {
     name: 'ListeDesRestaurants',
@@ -79,7 +79,7 @@
     }),
 
     components: {
-        modal,
+        Modal,
     },
 
     firestore() {

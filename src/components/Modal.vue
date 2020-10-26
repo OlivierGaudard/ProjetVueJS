@@ -14,7 +14,7 @@
   <template>
     <transition name="modal-fade">
       <div class="modal">
-        <h1> Détails d'un restaurant :  {{msg}}</h1>
+        <h1> Détails d'un restaurant :  {{msg}} </h1>
       </div>
     </transition>
   </template>

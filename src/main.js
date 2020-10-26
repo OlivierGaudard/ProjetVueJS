@@ -14,7 +14,7 @@ import 'vue-material/dist/theme/default.css'
 import VueRouter from 'vue-router'
 
 import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
-import Modal from './components/Modal.vue';
+import RestauDetails from './components/RestauDetails.vue';
 
 
 
@@ -41,10 +41,10 @@ const router = new VueRouter(
             },
 
             {
-                path: '/RestaurantDetail?id=',
-                component: Modal,
+                path: '/RestaurantDetails',
+                component: RestauDetails,
                 props: {
-                    msg: "Hello",
+                    msg: "Hello"
                     //data: data
                 }
             }
