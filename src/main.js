@@ -14,7 +14,7 @@ import 'vue-material/dist/theme/default.css'
 import VueRouter from 'vue-router'
 
 import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
-import RestauDetails from './components/RestauDetails.vue';
+import RestaurantDetails from './components/RestaurantDetails.vue';
 
 
 
@@ -41,8 +41,8 @@ const router = new VueRouter(
             },
 
             {
-                path: '/RestaurantDetails',
-                component: RestauDetails,
+                path: '/RestaurantDetails/:r',
+                component: RestaurantDetails,
                 props: {
                     msg: "Hello"
                     //data: data
