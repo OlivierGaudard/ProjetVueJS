@@ -16,6 +16,9 @@ import VueRouter from 'vue-router'
 import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
 import RestaurantDetails from './components/RestaurantDetails.vue';
 
+import * as VueGoogleMaps from "vue2-google-maps";
+
+
 
 
 
@@ -26,6 +29,12 @@ firebase.initializeApp({
 
 export const db = firebase.firestore();
 
+Vue.use(VueGoogleMaps, {
+    load: {
+      key: "AIzaSyDxg6xEVt7q79Ck3aCG23Xu0uYc0sjRFPo",
+      libraries: "places" // necessary for places input
+    }
+  });
 Vue.use(VueFirestore)
 Vue.use(VueMaterial)
 Vue.use(VueRouter)

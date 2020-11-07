@@ -3,26 +3,39 @@
 
 
   <template>
-      <div>
+      <div> 
         <h1> Détails d'un restaurant : {{id}} </h1>
 
         <ul>  
             <li> Nom : {{restaurant.name}} </li>
             <li> Cuisine : {{restaurant.cuisine}} </li>
             <li> Ville : {{restaurant.borough}} </li>
+
+
         </ul>
 
+
+        <google-map :coord='restaurant.address.coord'/>
       </div>
   </template>
 
 
   <script>
+
+  import GoogleMap from "./GoogleMap.vue";
+
+  
     export default {
       name: 'RestaurantDetails',
+      components: {
+          GoogleMap
+      },
       props: {
        //msg: String,
         //data: data
+        
       },
+      
       
       computed: {
           id() {
@@ -31,20 +44,24 @@
       },
       data: function() {
           return {
-              restaurant: null
+              restaurant: 
+              {
+                address:
+                {
+                  coord: []
+                }
+              }
           }
       },
-      mounted() {
-          console.log("Avant l'affichage, on pourra faire un fetch...");
-          console.log("ID = " + this.id)
+      async mounted() {
           let url = "http://localhost:8080/api/restaurants/" + this.id;
-          fetch(url)
+          await fetch(url)
           .then(response => {
             return response.json();
           }).then(data => {
             
             this.restaurant = data.restaurant;
-            console.log(this.restaurant.name);
+
           })
       },
       methods : {
