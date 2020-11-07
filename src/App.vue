@@ -7,21 +7,52 @@ launch client : npm run serve -->
 
 <template>
     <div id="app">
-        <router-link to="/">[Home]</router-link>
-        <router-link to="/RestaurantDetails">[Details Restau]</router-link>
+
+         <slider :width="300" format="push" direction="left" :opacity="0.15" :links="[
+
+         {'id': 1, 'text': 'Accueil', 'url': '/'}, 
+         
+         {'id': 2, 'text': 'Recherche avancée', 'url': '/'},
+
+         {'id': 2, 'text': 'Ajout restaurant', 'url': '/AjoutRestaurant'},
+         
+         ]" customStyles=" {'navMenu': {'background-color': 'black'}} " >
+         
+         </slider>
+
+        
+        <!-- <router-link to="/RestaurantDetails">[Details Restau]</router-link> -->
+
         <router-view> </router-view>
     </div>
 </template>
 
 <script>
 
-
+    import Slider from '@jeremyhamm/vue-slider'
 
 
   export default {
       name: 'app',
       components: {
+          'slider': Slider
           
+      },
+      methods:
+      {
+
       }
+
   }
+
+  
   </script>
+
+  <style> 
+
+  img {
+  width: 5%;
+  height: auto;
+}
+
+</style>

@@ -18,11 +18,11 @@ td {
 }
 
 tr:hover {
-    background-color: yellow;
+    background-color: lightgreen;
 }
 
 input:invalid {
-    background-color: pink;
+    background-color: #ffd699;
 }
 
 input:valid {

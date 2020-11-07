@@ -53,9 +53,9 @@
               }
           }
       },
-      async mounted() {
+       mounted() {
           let url = "http://localhost:8080/api/restaurants/" + this.id;
-          await fetch(url)
+           fetch(url)
           .then(response => {
             return response.json();
           }).then(data => {

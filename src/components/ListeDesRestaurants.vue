@@ -5,11 +5,18 @@
     <template>
         <div>
             <div v-if="nbRestaurants">
-                <modal v-show="isModalVisible" @close="closeModal"/>
+                <br/>
+                <br />
+
 
                 <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
-                <p>Nb de resto par  :  <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
+                <p>Nombre de restaurants par page  :  <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
+                <br />
+                <label id="advancedResearch">
+                Recherche nom restaurant : <input @input="chercherRestaurants()" type="text" v-model="nameRestauSearch">
+                </label>
+                <br />
                 <br />
                 <p>Page courante : {{pageCourante}} </p>
                 <md-table>
@@ -32,35 +39,17 @@
                     </md-table-row>
             </md-table>
             <br />
-            <label>
-                Nom : <input @input="chercherRestaurants()" type="text" v-model="nameRestauSearch">
-            </label>
+
         </div>
         <div v-else>
             <p>Vous n'avez aucun restaurant.</p>
         </div>
-        <hr>
-        <p>Nouveau restaurant :</p>
-        <form @submit.prevent="ajouterRestaurant">
-            <label>
-                Nom : <input type="text" required v-model="name">
-            </label>
-            <label>
-                Cuisine : <input type="text" required v-model="cuisine">
-            </label>
-            <label>
-                Ville : <input type="text" required v-model="borough">
-            </label>
 
-            <button>Ajouter</button>
-        </form>
     </div> 
 </template>
 <script>
   import {db} from '../main.js'
   import _ from 'lodash'
-  import Modal from '../components/Modal.vue'
-  import VueRouter from 'vue-router'
   export default {
     name: 'ListeDesRestaurants',
     data: () => ({
@@ -74,12 +63,11 @@
         nameRestauSearch: '',
         name: '',
         borough: '', 
-        expenses: [],
-        isModalVisible: false
+        expenses: []
     }),
 
     components: {
-        Modal,
+    
     },
 
     firestore() {
@@ -89,7 +77,6 @@
     },
 
     mounted() {
-        console.log("JE M'AFFICHE AVANT");
         this.getRestaurantsFromServer();
     },
 
@@ -138,55 +125,6 @@
             this.getRestaurantsFromServer();
         },
 
-/*
-        async getRestaurantFromId(id)
-        {
-           
-        },
-
-*/
-        async afficherDetailsRestau(data)
-        {
-            //let url =  "/RestaurantDetail?id="+data._id;
-            //console.log(data);
-
-
-            const RestauDetails = {
-                template: `<div>RestauDetails {{ $route.params.id }}</div>`
-            }
-
-            let id = data._id;
-            const router = new VueRouter({
-             routes: [
-                // dynamic segments start with a colon
-            { path: '/RestaurantDetail?id=:id', component: RestauDetails}
-                     ]
-            })
-
-            router.push({ path: '/RestaurantDetail?id='+id})
-
-        },
-
-
-        async ajouterRestaurant() {
-            let donneesFormulaire = new FormData();
-            donneesFormulaire.append("name", this.name);
-            donneesFormulaire.append("cuisine", this.cuisine);
-
-            fetch(this.url, {
-                method: "POST",
-                body: donneesFormulaire
-            }).then(function(responseJSON) {
-                responseJSON.json().then(function(responseJS) {
-                    console.log(responseJS.msg);
-                });
-            }).catch(function(e) {
-                console.log(e);
-            });
-            this.name = '';
-            this.cuisine = '';
-            this.getRestaurantsFromServer();    
-        },
 
         pageSuivante() {
             if(this.page === (this.nbRestaurants / this.pagesize)) return;
@@ -203,7 +141,7 @@
         }, 
 
         getColor(index) {
-            return (index % 2) ? 'lightBlue' : 'pink';
+            return (index % 2) ? 'lightBlue' : '#ffd699';
         }
     }
 }

@@ -15,9 +15,10 @@ import VueRouter from 'vue-router'
 
 import ListeDesRestaurants from './components/ListeDesRestaurants.vue';
 import RestaurantDetails from './components/RestaurantDetails.vue';
+import AjoutRestaurant from './components/AjoutRestaurant.vue';
 
 import * as VueGoogleMaps from "vue2-google-maps";
-
+import Slider from '@jeremyhamm/vue-slider'
 
 
 
@@ -35,6 +36,7 @@ Vue.use(VueGoogleMaps, {
       libraries: "places" // necessary for places input
     }
   });
+Vue.use(Slider)
 Vue.use(VueFirestore)
 Vue.use(VueMaterial)
 Vue.use(VueRouter)
@@ -56,6 +58,11 @@ const router = new VueRouter(
                     msg: "Hello"
                     //data: data
                 }
+            },
+
+            {
+                path: '/AjoutRestaurant',
+                component: AjoutRestaurant
             }
 
         ],
