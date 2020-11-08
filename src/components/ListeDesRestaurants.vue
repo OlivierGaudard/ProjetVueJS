@@ -12,6 +12,7 @@
                 <h2>Nombre de restaurants : {{nbRestaurants}}</h2>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
                 <form @submit.prevent="getRestaurantsFromServer">
+                    <br/>
                     <label>
                 Page : <input type="number" required v-model="page">
                 <button >Aller</button>
@@ -111,6 +112,7 @@
                     this.restaurants = responseJS.data;
                     this.nbRestaurants = responseJS.count;
                     this.nameRestauSearch != '' ? this.nameRestauSearch = '' : this.nameRestauSearch = '';
+                    this.pageCourante = this.page;
                     console.log(responseJS);
                 });
             }).catch(function(e) {
@@ -155,7 +157,7 @@
 
         firstPage(){
                 this.page=0 ;
-                this.pageCourante=0;
+                this.pageCourante=1;
                 this.getRestaurantsFromServer();
 
             },
