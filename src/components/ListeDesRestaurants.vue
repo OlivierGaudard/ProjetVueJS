@@ -11,6 +11,17 @@
 
                 <h2>Nombre de restaurants : {{nbRestaurants}}</h2>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
+                <form @submit.prevent="getRestaurantsFromServer">
+                    <label>
+                Page : <input type="number" required v-model="page">
+                <button >Aller</button>
+                    </label>
+                </form>
+                <br>
+                <button v-bind:disabled="page===0" v-on:click="firstPage()">Première page </button>
+                <button v-bind:disabled="page===nbPagesTotal" v-on:click="lastPage()">Dernière page</button>
+
+                
                 <p>Nombre de restaurants a afficher  :  <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
                 <br />
                 <div v-if="display">
@@ -141,6 +152,20 @@
             this.pageCourante--;
             this.getRestaurantsFromServer();
         }, 
+
+        firstPage(){
+                this.page=0 ;
+                this.pageCourante=0;
+                this.getRestaurantsFromServer();
+
+            },
+        lastPage(){
+
+                this.page=this.nbPagesTotal ;
+                this.pageCourante=this.nbPagesTotal ;
+                this.getRestaurantsFromServer();
+                this.nbPagesTotal = Math.round(this.nbRestaurants / this.pagesize);
+            },
 
         getColor(index) {
             return (index % 2) ? 'lightBlue' : '#ffd699';
