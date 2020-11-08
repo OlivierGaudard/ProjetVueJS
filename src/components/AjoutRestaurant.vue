@@ -2,10 +2,10 @@
   @date : 30/09/2020 -->
 
   <template>
-
+        
       <div style="background-color:#e6ffe6" class="AjoutRestaurant">
 
-        <h1 style="margin-left: 15%"> Ajout d'un restaurant :  </h1>
+        <h1 style="margin-left: 15%; "> Ajout d'un restaurant :  </h1>
 
 
 
@@ -24,14 +24,26 @@
 
             
             
-            <google-map/>
+            <google-map @clicked="onClickChild"/>
 
             <br/>
 
             <button>Ajouter</button>
         </form>
 
-        <p id="secret">  Le restaurant vient d'être enregistré ! </p>
+        <p id="secret">  Le restaurant vient d'être enregistré !
+            <br/> 
+            <b>Coordonnées</b> : {{coord.lat}} - {{coord.lng}}
+            <br/> 
+            <b>Nom :</b> {{name}}
+            <br/> 
+            <b>Cuisine :</b> {{cuisine}}
+            <br/> 
+            <b>Ville :</b> {{borough}}
+
+            <input value="Ok!" type="button" @click="CloseAndClean"/>
+        </p>
+
 
       </div>
 
@@ -53,6 +65,12 @@
       },
 
       data: () => ({
+        //datas: '',
+        coord: 
+        {
+            lat : '',
+            lng: ''
+        },
         name: '',
         cuisine: '',
         borough: '', 
@@ -67,6 +85,7 @@
             donneesFormulaire.append("name", this.name);
             donneesFormulaire.append("cuisine", this.cuisine);
             donneesFormulaire.append("borough", this.borough);
+            donneesFormulaire.append("coord", this.coord);
 
             fetch(this.url, {
                 method: "POST",
@@ -78,13 +97,42 @@
             }).catch(function(e) {
                 console.log(e);
             });
+
+            /*
+            this.datas = {
+                coord: 
+                {
+                    lat : this.coord.lat,
+                    lng : this.coord.lng
+                },
+                name: this.name,
+                cuisine: this.cuisine,
+                borough: this.borough
+                };
+            
             this.name = '';
             this.cuisine = '';
             this.borough = ''; 
+            this.coord = 
+            */
             
             document.getElementById('secret').style.display='block';
 
         },
+
+        onClickChild (coords) {
+
+        this.coord = coords;
+        console.log(this.coord) // someValue
+        },
+
+        CloseAndClean()
+        {
+            this.name = '';
+            this.cuisine = '';
+            this.borough = ''; 
+            document.getElementById('secret').style.display='none';
+        }
       }
 
     };

@@ -99,6 +99,8 @@
             this.restaurant = data.restaurant;
             this.restaurant.address.coord = {lat: data.restaurant.address.coord[1], lng: data.restaurant.address.coord[0] };
 
+            console.log(this.restaurant);
+
           })
       },
       methods : 

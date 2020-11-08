@@ -20,7 +20,7 @@
                 <br />
                 <p>Page courante : {{pageCourante}} </p>
                 <md-table>
-                    <md-table-row>
+                    <md-table-row>  
                         <md-table-head>Nom</md-table-head>
                         <md-table-head>Cuisine</md-table-head>
                         <md-table-head>Ville</md-table-head>

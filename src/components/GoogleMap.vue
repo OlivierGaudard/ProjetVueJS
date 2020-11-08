@@ -7,7 +7,7 @@
         <gmap-autocomplete
           @place_changed="setPlace">
         </gmap-autocomplete>
-        <button @click="addMarker">Go !</button>
+        <input type="button" value="Go!" @click="addMarker"/>
       </label>
       <br/>
 
@@ -35,11 +35,11 @@ export default {
 
     
   name: "GoogleMap",
-  props: ['coord'],
+  props: [],
 
   data() {
     return {
-        
+
       // change this to whatever makes sense
       center: { lat: 43.5494428, lng: 6.9846071 },
       markers: [],
@@ -69,6 +69,7 @@ export default {
         this.places.push(this.currentPlace);
         this.center = marker;
         this.currentPlace = null;
+        this.$emit('clicked', marker);
       }
     },
     geolocate: function() {
@@ -79,7 +80,7 @@ export default {
           
         };
       });
-    }
+    },
   }
 };
 
