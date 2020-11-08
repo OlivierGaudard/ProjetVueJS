@@ -14,7 +14,9 @@ launch client : npm run serve -->
          
          {'id': 2, 'text': 'Recherche avancée', 'url': '/'},
 
-         {'id': 2, 'text': 'Ajout restaurant', 'url': '/AjoutRestaurant'},
+         {'id': 3, 'text': 'Ajout restaurant', 'url': '/AjoutRestaurant'},
+
+         {'id': 4, 'text': 'Github Repo', 'url': 'https://github.com/OlivierGaudard/ProjetVueJS'},
          
          ]" customStyles=" {'navMenu': {'background-color': 'black'}} " >
          

@@ -42,7 +42,7 @@
 
         </div>
         <div v-else>
-            <p>Vous n'avez aucun restaurant.</p>
+            <p>Aucun restaurant ne correspond à votre recherche</p>
         </div>
 
     </div> 

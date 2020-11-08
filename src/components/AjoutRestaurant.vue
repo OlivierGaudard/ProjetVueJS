@@ -22,6 +22,12 @@
                 Ville : <input type="text" required v-model="borough">
             </label>
 
+            
+            
+            <google-map/>
+
+            <br/>
+
             <button>Ajouter</button>
         </form>
 
@@ -35,8 +41,16 @@
 
   <script>
 
+
+  import GoogleMap from "./GoogleMap.vue";
+
+
     export default {
       name: 'AjoutRestaurant',
+      components:
+      {
+          GoogleMap
+      },
 
       data: () => ({
         name: '',
@@ -86,4 +100,4 @@
   display: none;
 }
 
-  </style>
+  </style>  

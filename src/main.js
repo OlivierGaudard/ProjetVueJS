@@ -55,7 +55,6 @@ const router = new VueRouter(
                 path: '/RestaurantDetails/:r',
                 component: RestaurantDetails,
                 props: {
-                    msg: "Hello"
                     //data: data
                 }
             },

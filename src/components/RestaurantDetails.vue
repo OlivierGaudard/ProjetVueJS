@@ -4,10 +4,9 @@
 
   <template>
       <div> 
-        <h1> Détails d'un restaurant : {{id}} </h1>
+        <h1> Détails du restaurant : {{restaurant.name}} ! ({{id}}) </h1>
 
         <ul>  
-            <li> Nom : {{restaurant.name}} </li>
             <li> Cuisine : {{restaurant.cuisine}} </li>
             <li> Ville : {{restaurant.borough}} </li>
 
@@ -15,26 +14,32 @@
         </ul>
 
 
-        <google-map :coord='restaurant.address.coord'/>
+        <br>
+        
+          <gmap-map
+            :center='restaurant.address.coord'
+            :zoom="12"
+            style="width:100%;  height: 400px;">
+          <gmap-marker
+            :position='restaurant.address.coord'>
+            </gmap-marker>
+          </gmap-map>
+
       </div>
   </template>
 
 
   <script>
 
-  import GoogleMap from "./GoogleMap.vue";
-
-  
     export default {
       name: 'RestaurantDetails',
       components: {
-          GoogleMap
+          
       },
-      props: {
-       //msg: String,
-        //data: data
+      props: [
+          'restaurant.address.coord'
+      ],
         
-      },
       
       
       computed: {
@@ -44,13 +49,7 @@
       },
       data: function() {
           return {
-              restaurant: 
-              {
-                address:
-                {
-                  coord: []
-                }
-              }
+              restaurant: null
           }
       },
        mounted() {
@@ -61,12 +60,16 @@
           }).then(data => {
             
             this.restaurant = data.restaurant;
+            this.restaurant.address.coord = {lat: data.restaurant.address.coord[1], lng: data.restaurant.address.coord[0] };
 
           })
       },
-      methods : {
+      methods : 
+      {
       }
     }
+    
+
   </script>
 
 

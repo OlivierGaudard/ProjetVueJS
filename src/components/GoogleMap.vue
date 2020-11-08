@@ -2,7 +2,7 @@
   <div >
       {{coord}}
     <div>
-      <h2>Search and add a pin</h2>
+      <h2>Entrez l'adresse ! </h2>
       <label>
         <gmap-autocomplete
           @place_changed="setPlace">
@@ -30,33 +30,33 @@
 
 <script>    
 
+import Vue from 'vue'
 
     const restaurantMarker = 
         {
             position: 
             {
-                lat: 40.848447,
-                lng: -73.856077
+                lat: 43.5494428,
+                lng: 6.9846071
             },
         //  title: "RestauName"
         };
 
-//console.log(this.coord);
+
 
 export default {
 
     
   name: "GoogleMap",
-  props: {
-      coord: Array
-  },
-
+  props: ['coord'],
 
   data() {
     return {
 
+      counter: Vue.util.extend({}, this.coord),
       // change this to whatever makes sense
-      center: { lat: 40.848447, lng:  -73.856077},
+      coordinate: this.coord,
+      center: { lat: 43.5494428, lng: 6.9846071 },
       markers: [restaurantMarker],
       places: [],
       currentPlace: null
@@ -66,9 +66,7 @@ export default {
   },
 
   mounted() {
-    //this.geolocate();
-
-    console.log(this.coord);
+    this.geolocate();
   },
 
   methods: {
