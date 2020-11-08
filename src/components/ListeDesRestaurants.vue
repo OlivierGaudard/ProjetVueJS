@@ -166,7 +166,7 @@
                 this.page=this.nbPagesTotal ;
                 this.pageCourante=this.nbPagesTotal ;
                 this.getRestaurantsFromServer();
-                this.nbPagesTotal = Math.round(this.nbRestaurants / this.pagesize);
+                this.nbPagesTotal = Math.floor(this.nbRestaurants / this.pagesize);
             },
 
         getColor(index) {
