@@ -7,7 +7,7 @@
         <gmap-autocomplete
           @place_changed="setPlace">
         </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
+        <button @click="addMarker">Go !</button>
       </label>
       <br/>
 

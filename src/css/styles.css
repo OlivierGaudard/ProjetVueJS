@@ -17,7 +17,7 @@ td {
     padding: 5px;
 }
 
-tr:hover {
+tr {
     background-color: lightgreen;
 }
 
@@ -31,4 +31,9 @@ input:valid {
 
 .bordureRouge {
     border: 2px dashed red;
+}
+
+#test
+{
+   background-color: #e6ffe6;
 }

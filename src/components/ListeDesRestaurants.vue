@@ -3,7 +3,7 @@
 
 <style scoped src="../css/styles.css"></style>
     <template>
-        <div>
+        <div id="test">
             <div v-if="nbRestaurants">
                 <br/>
                 <br />
@@ -24,6 +24,7 @@
                         <md-table-head>Nom</md-table-head>
                         <md-table-head>Cuisine</md-table-head>
                         <md-table-head>Ville</md-table-head>
+                        <md-table-head>Rue</md-table-head>
                         <md-table-head>Details</md-table-head>
                         <md-table-head>Supprimer</md-table-head>
 
@@ -32,6 +33,7 @@
                         <md-table-cell>{{r.name}}</md-table-cell>
                         <md-table-cell>{{r.cuisine}}</md-table-cell>
                         <md-table-cell>{{r.borough}}</md-table-cell>
+                        <md-table-cell>{{r.address.street}}</md-table-cell>
                         <md-table-cell>
                             <router-link :to="'/RestaurantDetails/' + r._id"> [Détails] </router-link>
                         </md-table-cell>

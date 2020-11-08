@@ -3,7 +3,7 @@
 
   <template>
 
-      <div class="AjoutRestaurant">
+      <div style="background-color:#e6ffe6" class="AjoutRestaurant">
 
         <h1 style="margin-left: 15%"> Ajout d'un restaurant :  </h1>
 
