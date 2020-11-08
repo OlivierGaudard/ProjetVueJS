@@ -1,6 +1,6 @@
 <template>
   <div >
-      {{coord}}
+
     <div>
       <h2>Entrez l'adresse ! </h2>
       <label>
@@ -30,19 +30,6 @@
 
 <script>    
 
-import Vue from 'vue'
-
-    const restaurantMarker = 
-        {
-            position: 
-            {
-                lat: 43.5494428,
-                lng: 6.9846071
-            },
-        //  title: "RestauName"
-        };
-
-
 
 export default {
 
@@ -52,12 +39,10 @@ export default {
 
   data() {
     return {
-
-      counter: Vue.util.extend({}, this.coord),
+        
       // change this to whatever makes sense
-      coordinate: this.coord,
       center: { lat: 43.5494428, lng: 6.9846071 },
-      markers: [restaurantMarker],
+      markers: [],
       places: [],
       currentPlace: null
 

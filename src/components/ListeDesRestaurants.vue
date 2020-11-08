@@ -11,9 +11,9 @@
 
                 <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
-                <p>Nombre de restaurants par page  :  <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
+                <p>Nombre de restaurants a afficher  :  <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
                 <br />
-                <label id="advancedResearch">
+                <label style="display:inline" id="advancedResearch">
                 Recherche nom restaurant : <input @input="chercherRestaurants()" type="text" v-model="nameRestauSearch">
                 </label>
                 <br />
@@ -29,7 +29,7 @@
                         <md-table-head>Supprimer</md-table-head>
 
                     </md-table-row>
-                        <md-table-row v-for="(r, index) in restaurants" v-bind:key="r._id" @click="showModal(r)" v-bind:style="{backgroundColor:getColor(index)}" v-bind:class="{bordureRouge:(index === 2)}">
+                        <md-table-row v-for="(r, index) in restaurants" v-bind:key="r._id" v-bind:style="{backgroundColor:getColor(index)}" v-bind:class="{bordureRouge:(index === 2)}">
                         <md-table-cell>{{r.name}}</md-table-cell>
                         <md-table-cell>{{r.cuisine}}</md-table-cell>
                         <md-table-cell>{{r.borough}}</md-table-cell>
@@ -96,15 +96,6 @@
             }).catch(function(e) {
                 console.log(e);
             })
-        },
-        
-        showModal(r) {
-            this.isModalVisible = true;
-            this.$emit('restaurant', r);
-        },
-
-        closeModal() {
-            this.isModalVisible = false;
         },
 
         chercherRestaurants: _.debounce(function() {

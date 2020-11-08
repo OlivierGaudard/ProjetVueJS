@@ -8,11 +8,11 @@ launch client : npm run serve -->
 <template>
     <div id="app">
 
-         <slider :width="300" format="push" direction="left" :opacity="0.15" :links="[
+         <slider id="slideclick" :width="300" format="push" direction="left" :opacity="0.15" :links="[
 
          {'id': 1, 'text': 'Accueil', 'url': '/'}, 
          
-         {'id': 2, 'text': 'Recherche avancée', 'url': '/'},
+         {'id': 2, 'text': 'Recherche avancée', 'url': '/'}, 
 
          {'id': 3, 'text': 'Ajout restaurant', 'url': '/AjoutRestaurant'},
 
@@ -31,7 +31,8 @@ launch client : npm run serve -->
 
 <script>
 
-    import Slider from '@jeremyhamm/vue-slider'
+    import Slider from '@jeremyhamm/vue-slider';
+
 
 
   export default {
@@ -42,6 +43,10 @@ launch client : npm run serve -->
       },
       methods:
       {
+          displaySearch()
+          {
+              
+          }
 
       }
 

@@ -17,7 +17,6 @@
             <li> Rue : {{restaurant.address.street}} </li>
             <li> Code Postal : {{restaurant.address.zipcode}} </li>
 
-
         </ul>
           <br/>
 
@@ -47,13 +46,11 @@
 
         </ul>
         </div>
+
 <div id="right">
         <img class= "imgResto" src="../assets/restaurant-interior.jpg"/>
 </div>
        
-        
-
-
       </div>
 
                 <gmap-map id="gmap"
@@ -102,7 +99,6 @@
             this.restaurant = data.restaurant;
             this.restaurant.address.coord = {lat: data.restaurant.address.coord[1], lng: data.restaurant.address.coord[0] };
 
-            console.log(this.restaurant);
           })
       },
       methods : 
@@ -123,9 +119,9 @@
   .imgResto 
   {
     width: 85%;
-        border-width:10px;
-     border-style:inset;
- border-color:#ffd699;
+    border-width:10px;
+    border-style:inset;
+    border-color:#ffd699;
   }
 
 
@@ -138,17 +134,13 @@
   #right
   {
     position: relative;
-    margin-left: 40%;
-
-    
-    
+    margin-left: 40%; 
   }
 
   #docker
   {
     position: relative;
     margin-left: 5%;
-    
   }
 
   #gmap
@@ -159,16 +151,16 @@
 
   #restoDetails
   {
-border-width:15px;
- border-style:inset;
- border-color:lightblue;
+    border-width:15px;
+    border-style:inset;
+    border-color:lightblue;
   }
 
   #restoNotes
   {
-border-width:15px;
- border-style:inset;
- border-color:#ffd699;
+    border-width:15px;
+    border-style:inset;
+    border-color:#ffd699;
   }
 
   #global
