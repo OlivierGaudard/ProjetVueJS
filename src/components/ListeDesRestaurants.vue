@@ -37,7 +37,7 @@
                         <md-table-cell>
                             <router-link :to="'/RestaurantDetails/' + r._id"> [Détails] </router-link>
                         </md-table-cell>
-                        <md-table-cell><button>Supprimer</button></md-table-cell>
+                        <md-table-cell><button @click="supprimerRestaurant(r._id)">Supprimer</button></md-table-cell>
                     </md-table-row>
             </md-table>
             <br />
