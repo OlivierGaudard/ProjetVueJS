@@ -3,11 +3,17 @@
 
 
   <template>
+  
     <div id="global">
+      <br/>
+              <h1 style="margin-left: 35%; text-decoration:underline"> Détails restaurant :  </h1>
+
+
+
+        <hr>
       <div id="docker"> 
         <h1> Bienvenue au {{restaurant.name}} !  </h1>
 
-        <br/>
 
         <div id="left">
         <ul id="restoDetails">  

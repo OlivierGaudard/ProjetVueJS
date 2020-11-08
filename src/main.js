@@ -62,6 +62,10 @@ const router = new VueRouter(
             {
                 path: '/AjoutRestaurant',
                 component: AjoutRestaurant
+            },
+            {
+                path: '/search',
+                component: ListeDesRestaurants,
             }
 
         ],

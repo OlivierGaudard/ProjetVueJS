@@ -2,7 +2,8 @@
   <div >
 
     <div>
-      <h2>Entrez l'adresse ! </h2>
+        
+      <h2>Entrez l'adresse : </h2>
       <label>
         <gmap-autocomplete
           @place_changed="setPlace">

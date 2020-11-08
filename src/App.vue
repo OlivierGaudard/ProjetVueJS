@@ -12,7 +12,7 @@ launch client : npm run serve -->
 
          {'id': 1, 'text': 'Accueil', 'url': '/'}, 
          
-         {'id': 2, 'text': 'Recherche avancée', 'url': '/'}, 
+         {'id': 2, 'text': 'Recherche avancée', 'url': '/search'}, 
 
          {'id': 3, 'text': 'Ajout restaurant', 'url': '/AjoutRestaurant'},
 
@@ -43,10 +43,6 @@ launch client : npm run serve -->
       },
       methods:
       {
-          displaySearch()
-          {
-              
-          }
 
       }
 

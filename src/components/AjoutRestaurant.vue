@@ -4,13 +4,13 @@
   <template>
         
       <div style="background-color:#e6ffe6" class="AjoutRestaurant">
-
-        <h1 style="margin-left: 15%; "> Ajout d'un restaurant :  </h1>
+          <br/>
+        <h1 style="margin-left: 35%; text-decoration:underline"> Ajout d'un restaurant :  </h1>
 
 
 
         <hr>
-        <p>Nouveau restaurant :</p>
+        <h2>Nouveau restaurant :</h2>
         <form @submit.prevent="ajouterRestaurant">
             <label>
                 Nom : <input type="text" required v-model="name">

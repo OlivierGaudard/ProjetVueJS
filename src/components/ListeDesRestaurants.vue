@@ -5,17 +5,19 @@
     <template>
         <div id="test">
             <div v-if="nbRestaurants">
-                <br/>
-                <br />
+               <br/>
+                <h1 style="margin-left: 35%; text-decoration:underline "> Liste des Restaurants :  </h1>
+        <hr>
 
-
-                <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
+                <h2>Nombre de restaurants : {{nbRestaurants}}</h2>
                 <button :disabled="page === 0" @click="pagePrecedente()" class="precedent">Précedent</button>&nbsp;&nbsp;<button :disabled="page === (nbRestaurants / pagesize)" @click="pageSuivante()" class="suivant">Suivant</button>
                 <p>Nombre de restaurants a afficher  :  <input @change="getRestaurantsFromServer" type="range" min=2 max=100 v-model="pagesize">{{pagesize}}</p>
                 <br />
-                <label style="display:inline" id="advancedResearch">
-                Recherche nom restaurant : <input @input="chercherRestaurants()" type="text" v-model="nameRestauSearch">
+                <div v-if="display">
+                <label id="advancedResearch">
+                <b> Recherche nom restaurant : </b> <input @input="chercherRestaurants()" type="text" v-model="nameRestauSearch">
                 </label>
+                </div>
                 <br />
                 <br />
                 <p>Page courante : {{pageCourante}} </p>
@@ -55,6 +57,7 @@
   export default {
     name: 'ListeDesRestaurants',
     data: () => ({
+        display: '',
         restaurants: [],
         nbRestaurants: 0,
         cuisine: '',
@@ -71,6 +74,11 @@
     components: {
     
     },
+    computed: {
+          path() {
+              return this.$route.fullPath;
+          }
+      },
 
     firestore() {
         return {
@@ -80,6 +88,7 @@
 
     mounted() {
         this.getRestaurantsFromServer();
+        this.searchState(this.path);
     },
 
     methods: {
@@ -135,6 +144,15 @@
 
         getColor(index) {
             return (index % 2) ? 'lightBlue' : '#ffd699';
+        },
+
+        searchState(path)
+        {
+            if(path === "/search")
+            {
+                this.display = true;
+            }   
+
         }
     }
 }
